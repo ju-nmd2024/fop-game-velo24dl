@@ -1,12 +1,17 @@
 let x = 270;
 let y = 370;
 
+let speed = 3;
+
+let asteroidX = 270;
+let asteroidY = 370;
+
 function setup() {
   createCanvas(800, 600);
-  background(54, 52, 52, 150);
 }
 
 function character(x, y, s) {
+  background(54, 52, 52, 150);
   scale(s);
 
   //alien neck
@@ -190,106 +195,160 @@ function character(x, y, s) {
   pop();
 }
 
-function asteroid1(x, y) {
+function asteroid1(asteroidX, asteroidY) {
   fill(66, 65, 64);
   stroke(82, 81, 80);
   strokeWeight(3);
-  ellipse(x - 100, y - 200, 90);
+  ellipse(asteroidX - 100, asteroidY - 200, 90);
 
   push();
-  translate(x - 140, y - 202);
+  translate(asteroidX - 140, asteroidY - 202);
   rotate(1.65);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 70, y - 225);
+  translate(asteroidX - 70, asteroidY - 225);
   rotate(0.9);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 100, y - 175);
+  translate(asteroidX - 100, asteroidY - 175);
   rotate(0.5);
   ellipse(0, 0, 25, 20);
   pop();
 
   push();
-  translate(x - 110, y - 235);
+  translate(asteroidX - 110, asteroidY - 235);
   rotate(2.9);
   ellipse(0, 0, 25, 10);
   pop();
 }
 
-function asteroid2(x, y) {
+function asteroid2(asteroidX, asteroidY) {
   fill(66, 65, 64);
   stroke(82, 81, 80);
   strokeWeight(3);
-  ellipse(x - 100, y - 200, 90);
+  ellipse(asteroidX - 100, asteroidY - 200, 90);
 
   push();
-  translate(x - 140, y - 202);
+  translate(asteroidX - 140, asteroidY - 202);
   rotate(1.65);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 70, y - 225);
+  translate(asteroidX - 70, asteroidY - 225);
   rotate(0.9);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 100, y - 175);
+  translate(asteroidX - 100, asteroidY - 175);
   rotate(0.5);
   ellipse(0, 0, 25, 20);
   pop();
 
   push();
-  translate(x - 110, y - 235);
+  translate(asteroidX - 110, asteroidY - 235);
   rotate(2.9);
   ellipse(0, 0, 25, 10);
   pop();
 }
 
-function asteroid3(x, y) {
+function asteroid3(asteroidX, asteroidY) {
   fill(66, 65, 64);
   stroke(82, 81, 80);
   strokeWeight(3);
-  ellipse(x - 100, y - 200, 90);
+  ellipse(asteroidX - 100, asteroidY - 200, 90);
 
   push();
-  translate(x - 140, y - 202);
+  translate(asteroidX - 140, asteroidY - 202);
   rotate(1.65);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 70, y - 225);
+  translate(asteroidX - 70, asteroidY - 225);
   rotate(0.9);
   ellipse(0, 0, 35, 20);
   pop();
 
   push();
-  translate(x - 100, y - 175);
+  translate(asteroidX - 100, asteroidY - 175);
   rotate(0.5);
   ellipse(0, 0, 25, 20);
   pop();
 
   push();
-  translate(x - 110, y - 235);
+  translate(asteroidX - 110, asteroidY - 235);
   rotate(2.9);
   ellipse(0, 0, 25, 10);
   pop();
+}
+
+function asteroid4(asteroidX, y) {
+  fill(66, 65, 64);
+  stroke(82, 81, 80);
+  strokeWeight(3);
+  ellipse(asteroidX - 100, asteroidY - 200, 50);
+
+  push();
+  translate(asteroidX - 115, asteroidY - 202);
+  rotate(1.65);
+  ellipse(0, 0, 15, 10);
+  pop();
+
+  push();
+  translate(asteroidX - 80, asteroidY - 215);
+  rotate(0.7);
+  ellipse(0, 0, 15, 10);
+  pop();
+
+  push();
+  translate(asteroidX - 100, asteroidY - 185);
+  rotate(0.1);
+  ellipse(0, 0, 15, 10);
+  pop();
+
+  push();
+  translate(asteroidX - 105, asteroidY - 225);
+  rotate(2.9);
+  ellipse(0, 0, 15, 5);
+  pop();
+}
+
+function button(x, y) {
+  fill(248, 186, 0);
+  rect(x - 70, y + 70, 200, 140);
+  textSize(33);
+  fill(255, 255, 255);
+  text("Play Game", x - 47, y + 145);
 }
 
 function draw() {
-  asteroid1(x, y - 150);
-  asteroid2(x + 250, y + 150);
-  asteroid3(x - 100, y + 70);
-  character(x + 50, y + 200, 0.55);
+  asteroid1(asteroidX, asteroidY - 150);
+  asteroid2(asteroidX + 250, asteroidY + 150);
+  asteroid3(asteroidX - 100, asteroidY + 70);
+  asteroid4(asteroidX + 220, asteroidY - 30);
+  character(x - 50, y + 50, 0.7);
+  //Help from second year NMD student Erik Sandqvist
+  y = y + speed;
+  if (y > 370 || y < 200) {
+    speed = speed * -1;
+  }
+  button(365, 50);
 }
 
+/*
+//Garrits code from video with help from Hedda Peterson
+function mouseClicked() {
+  if (mouseX > 225 && mouseX < 330 && mouseY > 385 && mouseY < 440) {
+    console.log("Play Game");
+  }
+}
+*/
 //Garrits Code + Help from NMD student Erik Sandqvist
 /*let x = 600;
 //let y = 100;
