@@ -1,11 +1,12 @@
-let x = 500;
+let x = 270;
+let y = 370;
 
 function setup() {
   createCanvas(800, 600);
+  background(54, 52, 52, 150);
 }
 
 function character(x, y, s) {
-  background(54, 52, 52, 150);
   scale(s);
 
   //alien neck
@@ -189,6 +190,120 @@ function character(x, y, s) {
   pop();
 }
 
-function draw() {
-  character(x, 150, 0.4);
+function asteroid1(x, y) {
+  fill(66, 65, 64);
+  stroke(82, 81, 80);
+  strokeWeight(3);
+  ellipse(x - 100, y - 200, 90);
+
+  push();
+  translate(x - 140, y - 202);
+  rotate(1.65);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 70, y - 225);
+  rotate(0.9);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 100, y - 175);
+  rotate(0.5);
+  ellipse(0, 0, 25, 20);
+  pop();
+
+  push();
+  translate(x - 110, y - 235);
+  rotate(2.9);
+  ellipse(0, 0, 25, 10);
+  pop();
 }
+
+function asteroid2(x, y) {
+  fill(66, 65, 64);
+  stroke(82, 81, 80);
+  strokeWeight(3);
+  ellipse(x - 100, y - 200, 90);
+
+  push();
+  translate(x - 140, y - 202);
+  rotate(1.65);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 70, y - 225);
+  rotate(0.9);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 100, y - 175);
+  rotate(0.5);
+  ellipse(0, 0, 25, 20);
+  pop();
+
+  push();
+  translate(x - 110, y - 235);
+  rotate(2.9);
+  ellipse(0, 0, 25, 10);
+  pop();
+}
+
+function asteroid3(x, y) {
+  fill(66, 65, 64);
+  stroke(82, 81, 80);
+  strokeWeight(3);
+  ellipse(x - 100, y - 200, 90);
+
+  push();
+  translate(x - 140, y - 202);
+  rotate(1.65);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 70, y - 225);
+  rotate(0.9);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(x - 100, y - 175);
+  rotate(0.5);
+  ellipse(0, 0, 25, 20);
+  pop();
+
+  push();
+  translate(x - 110, y - 235);
+  rotate(2.9);
+  ellipse(0, 0, 25, 10);
+  pop();
+}
+
+function draw() {
+  asteroid1(x, y - 150);
+  asteroid2(x + 250, y + 150);
+  asteroid3(x - 100, y + 70);
+  character(x + 50, y + 200, 0.55);
+}
+
+//Garrits Code + Help from NMD student Erik Sandqvist
+/*let x = 600;
+//let y = 100;
+let speed = 4;
+
+function draw() {
+  character(x, y, 0.6);
+
+  y = y + speed;
+
+  if (y > 600) {
+    speed = -4;
+  } else if (y === 600) {
+    speed = 0;
+  }
+}
+  */
