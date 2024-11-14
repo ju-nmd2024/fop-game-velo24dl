@@ -6,12 +6,15 @@ let speed = 3;
 let asteroidX = 270;
 let asteroidY = 370;
 
+let groundX = 100;
+let groundY = 100;
+
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(600, 800);
+  background(54, 52, 52, 150);
 }
 
 function character(x, y, s) {
-  background(54, 52, 52, 150);
   scale(s);
 
   //alien neck
@@ -288,7 +291,7 @@ function asteroid3(asteroidX, asteroidY) {
   pop();
 }
 
-function asteroid4(asteroidX, y) {
+function asteroid4(asteroidX, asteriodY) {
   fill(66, 65, 64);
   stroke(82, 81, 80);
   strokeWeight(3);
@@ -319,19 +322,57 @@ function asteroid4(asteroidX, y) {
   pop();
 }
 
-function button(x, y) {
-  fill(248, 186, 0);
-  rect(x - 70, y + 70, 200, 140);
-  textSize(33);
-  fill(255, 255, 255);
-  text("Play Game", x - 47, y + 145);
+function asteroid5(asteriodX, asteroidY) {
+  fill(66, 65, 64);
+  stroke(82, 81, 80);
+  strokeWeight(3);
+  ellipse(asteroidX - 100, asteroidY - 200, 90);
+
+  push();
+  translate(asteroidX - 140, asteroidY - 202);
+  rotate(1.65);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(asteroidX - 70, asteroidY - 225);
+  rotate(0.9);
+  ellipse(0, 0, 35, 20);
+  pop();
+
+  push();
+  translate(asteroidX - 100, asteroidY - 175);
+  rotate(0.5);
+  ellipse(0, 0, 25, 20);
+  pop();
+
+  push();
+  translate(asteroidX - 110, asteroidY - 235);
+  rotate(2.9);
+  ellipse(0, 0, 25, 10);
+  pop();
 }
 
-function draw() {
+function playButton(x, y) {
+  fill(248, 186, 0);
+  //rect(x - 70, y + 70, 200, 140);
+  textSize(43);
+  fill(200, 200, 255);
+  text("Play Game", x - 47, y + 75);
+}
+
+function gameText(x, y) {
+  textSize(25);
+  fill(255, 255, 255);
+  text("Help the Alien to land safley", x - 47, y + 75);
+}
+
+function startScreen() {
   asteroid1(asteroidX, asteroidY - 150);
   asteroid2(asteroidX + 250, asteroidY + 150);
   asteroid3(asteroidX - 100, asteroidY + 70);
   asteroid4(asteroidX + 220, asteroidY - 30);
+  asteroid5(asteroidX - 150, asteroidY + 250);
   character(x - 50, y + 50, 0.7);
 
   //Help from second year NMD student Erik Sandqvist
@@ -339,7 +380,78 @@ function draw() {
   if (y > 370 || y < 200) {
     speed = speed * -1;
   }
-  button(365, 50);
+  playButton(345, 50);
+  gameText(287, 110);
+}
+
+function gameScreenBackground() {
+  background(54, 52, 52, 150);
+}
+
+function landingGround(groundX, groundY) {
+  push();
+  fill(41, 40, 40);
+  noStroke();
+  rect(0, 650, 600, 150);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  ellipse(300, 710, 340, 100);
+  pop();
+
+  push();
+  noStroke();
+  fill(42, 46, 80);
+  ellipse(300, 710, 320, 90);
+  pop();
+
+  push();
+  noStroke();
+  fill(255, 255, 255);
+  ellipse(300, 710, 300, 73);
+  pop();
+
+  push();
+  noStroke();
+  fill(42, 46, 80);
+  rect(250, 680, 10, 60);
+  rect(350, 680, 10, 60);
+  rect(260, 710, 90, 10);
+  pop();
+
+  /*push();
+  textSize(105);
+  fill(42, 46, 80);
+  translate(x, y+288);
+  rotate(1.6);
+  text("U", 0, 0);
+  pop();
+  */
+}
+function gameScreen() {
+  asteroid1(asteroidX + 100, asteroidY - 150);
+  asteroid2(asteroidX + 300, asteroidY + 150);
+  asteroid3(asteroidX - 50, asteroidY + 70);
+  asteroid4(asteroidX + 320, asteroidY - 30);
+  asteroid4(asteroidX + 120, asteroidY - 30);
+  asteroid5(asteroidX - 150, asteroidY + 250);
+  gameScreenBackground();
+  landingGround();
+  character(x, y, 0.5);
+  y = y + speed;
+
+  if (y > 1100) {
+    speed = -4;
+  } else if (y === 600) {
+    speed = 0;
+  }
+}
+
+function draw() {
+  //startScreen();
+  gameScreen();
 }
 
 /*
