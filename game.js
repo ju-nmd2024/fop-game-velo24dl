@@ -333,6 +333,7 @@ function draw() {
   asteroid3(asteroidX - 100, asteroidY + 70);
   asteroid4(asteroidX + 220, asteroidY - 30);
   character(x - 50, y + 50, 0.7);
+
   //Help from second year NMD student Erik Sandqvist
   y = y + speed;
   if (y > 370 || y < 200) {
