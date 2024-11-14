@@ -1,7 +1,7 @@
 let x = 270;
 let y = 370;
 
-let speed = 3;
+let speed = 5;
 
 let asteroidX = 270;
 let asteroidY = 370;
@@ -368,13 +368,14 @@ function gameText(x, y) {
 }
 
 function startScreen() {
+  clear();
+  gameScreenBackground();
   asteroid1(asteroidX, asteroidY - 150);
   asteroid2(asteroidX + 250, asteroidY + 150);
   asteroid3(asteroidX - 100, asteroidY + 70);
   asteroid4(asteroidX + 220, asteroidY - 30);
   asteroid5(asteroidX - 150, asteroidY + 250);
   character(x - 50, y + 50, 0.7);
-
   //Help from second year NMD student Erik Sandqvist
   y = y + speed;
   if (y > 370 || y < 200) {
@@ -443,8 +444,8 @@ function gameScreen() {
   y = y + speed;
 
   if (y > 1100) {
-    speed = -4;
-  } else if (y === 600) {
+    speed = -2;
+  } else if (y === 1100) {
     speed = 0;
   }
 }
