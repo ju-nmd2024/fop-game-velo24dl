@@ -1,7 +1,6 @@
 let x = 420;
 let y = 370;
-
-let speed = 5;
+let speed = 4;
 
 let asteroidX = 270;
 let asteroidY = 370;
@@ -9,11 +8,31 @@ let asteroidY = 370;
 let groundX = 100;
 let groundY = 100;
 
-let state = "Start";
+let state = "start";
+let acceleration = 0.5;
 
 function setup() {
   createCanvas(600, 800);
   background(54, 52, 52, 150);
+}
+
+function startScreen() {
+  clear();
+  gameScreenBackground();
+  asteroid1(asteroidX, asteroidY - 150);
+  asteroid2(asteroidX + 250, asteroidY + 150);
+  asteroid3(asteroidX - 100, asteroidY + 70);
+  asteroid4(asteroidX + 220, asteroidY - 30);
+  asteroid5(asteroidX - 50, asteroidY + 250);
+  asteroid5(asteroidX + 150, asteroidY + 450);
+  character(x - 180, y + 150, 0.7);
+  //Help from second year NMD student Erik Sandqvist
+  y = y + speed;
+  if (y > 370 || y < 200) {
+    speed = speed * -1;
+  }
+  playButton(345, 50);
+  gameText(287, 110);
 }
 
 function character(x, y, s) {
@@ -356,40 +375,45 @@ function asteroid5(asteroidX, asteroidY) {
 }
 
 function playButton(x, y) {
-  fill(248, 186, 0);
-  //rect(x - 70, y + 70, 200, 140);
-  textSize(43);
   fill(200, 200, 255);
+  rect(x - 120, y, 350, 180);
+  textSize(43);
+  noStroke();
+  fill(0);
   text("Play Game", x - 47, y + 75);
 }
 
 function gameText(x, y) {
   textSize(25);
-  fill(255, 255, 255);
+  fill(0);
   text("Help the Alien to land safley", x - 47, y + 75);
 }
 
-function startScreen() {
-  clear();
+function gameScreen() {
+  asteroid1(asteroidX + 100, asteroidY - 150);
+  asteroid2(asteroidX + 300, asteroidY + 150);
+  asteroid3(asteroidX - 50, asteroidY + 70);
+  asteroid4(asteroidX + 320, asteroidY - 30);
+  asteroid4(asteroidX + 120, asteroidY - 30);
+  asteroid5(asteroidX - 150, asteroidY + 250);
   gameScreenBackground();
-  asteroid1(asteroidX, asteroidY - 150);
-  asteroid2(asteroidX + 250, asteroidY + 150);
-  asteroid3(asteroidX - 100, asteroidY + 70);
-  asteroid4(asteroidX + 220, asteroidY - 30);
-  asteroid5(asteroidX - 50, asteroidY + 250);
-  asteroid5(asteroidX + 150, asteroidY + 450);
-  character(x - 180, y + 150, 0.7);
-  //Help from second year NMD student Erik Sandqvist
+  landingGround();
+  character(x, y, 0.5);
+  //this part done with help during lab
   y = y + speed;
-  if (y > 370 || y < 200) {
-    speed = speed * -1;
-  }
-  playButton(345, 50);
-  gameText(287, 110);
-}
+  speed = speed + acceleration;
 
-function gameScreenBackground() {
-  background(54, 52, 52, 150);
+  if (keyIsDown(32)) {
+    acceleration = -0.7;
+  } else {
+    acceleration = 0.5;
+  }
+  if (speed > 4 && y >= 1150) {
+    state = "gameOver";
+  }
+  if (speed < 5 && y >= 1150) {
+    state = "youWin";
+  }
 }
 
 function landingGround(groundX, groundY) {
@@ -434,62 +458,66 @@ function landingGround(groundX, groundY) {
   pop();
   */
 }
-function gameScreen() {
-  asteroid1(asteroidX + 100, asteroidY - 150);
-  asteroid2(asteroidX + 300, asteroidY + 150);
-  asteroid3(asteroidX - 50, asteroidY + 70);
-  asteroid4(asteroidX + 320, asteroidY - 30);
-  asteroid4(asteroidX + 120, asteroidY - 30);
-  asteroid5(asteroidX - 150, asteroidY + 250);
-  gameScreenBackground();
-  landingGround();
-  character(x, y, 0.5);
-  y = y + speed;
 
-  if (y > 1200) {
-    speed = -2;
-  } else if (y === 1200) {
-    speed = 0;
-  }
+function gameScreenBackground() {
+  background(54, 52, 52, 150);
+}
+
+function gameOverScreen() {
+  background(179, 36, 40);
+  strokeWeight(5);
+  stroke(66, 65, 64);
+  fill(147, 9, 253);
+  rect(groundX + 60, groundY + 200, 250, 150);
+  fill(255, 255, 255);
+  textSize(25);
+  text("Game Over", groundX + 120, groundY + 280);
+  textSize(17);
+  text("Click to restart", groundX + 130, groundY + 320);
+}
+
+function youWinScreen() {
+  background(147, 9, 253);
+  strokeWeight(5);
+  stroke(66, 65, 64);
+  fill(179, 36, 40);
+  rect(groundX + 60, groundY + 200, 250, 150);
+  fill(255, 255, 255);
+  textSize(25);
+  noStroke();
+  text("You Win", groundX + 135, groundY + 260);
+  textSize(17);
+  text("Click to go to home page", groundX + 100, groundY + 320);
 }
 
 function draw() {
-  if (state === "Start") {
+  clear();
+  if (state === "start") {
     startScreen();
-  } else if (state === "Play Game") {
+  } else if (state === "playGame") {
     gameScreen();
+  } else if (state === "gameOver") {
+    gameOverScreen();
+  } else if (state === "youWin") {
+    youWinScreen();
   }
 }
+
 function mouseClicked() {
-  if (state === "Start") {
-    state = "Play Game";
-  } else if (state === "Play game") {
-    state = "Start";
+  if (state === "start") {
+    if (mouseX > 160 && mouseX < 405 && mouseY > 35 && mouseY < 160) {
+      state = "playGame";
+    }
+  } else if (state === "gameOver") {
+    if (mouseX > 160 && mouseX < 410 && mouseY > 301 && mouseY < 450) {
+      state = "playGame";
+      y = 370;
+      speed = 3;
+      acceleration = 0.5;
+    } else if (state === "youWin") {
+      if (mouseX > 160 && mouseX < 410 && mouseY > 300 && mouseY < 450) {
+        state = "start";
+      }
+    }
   }
 }
-
-/*
-//Garrits code from video with help from Hedda Peterson
-function mouseClicked() {
-  if (mouseX > 225 && mouseX < 330 && mouseY > 385 && mouseY < 440) {
-    console.log("Play Game");
-  }
-}
-*/
-//Garrits Code + Help from NMD student Erik Sandqvist
-/*let x = 600;
-//let y = 100;
-let speed = 4;
-
-function draw() {
-  character(x, y, 0.6);
-
-  y = y + speed;
-
-  if (y > 600) {
-    speed = -4;
-  } else if (y === 600) {
-    speed = 0;
-  }
-}
-  */
