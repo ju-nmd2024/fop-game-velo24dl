@@ -1,4 +1,4 @@
-let x = 270;
+let x = 420;
 let y = 370;
 
 let speed = 5;
@@ -8,6 +8,8 @@ let asteroidY = 370;
 
 let groundX = 100;
 let groundY = 100;
+
+let state = "Start";
 
 function setup() {
   createCanvas(600, 800);
@@ -200,7 +202,7 @@ function character(x, y, s) {
 
 function asteroid1(asteroidX, asteroidY) {
   fill(66, 65, 64);
-  stroke(82, 81, 80);
+  stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 90);
 
@@ -231,7 +233,7 @@ function asteroid1(asteroidX, asteroidY) {
 
 function asteroid2(asteroidX, asteroidY) {
   fill(66, 65, 64);
-  stroke(82, 81, 80);
+  stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 90);
 
@@ -262,7 +264,7 @@ function asteroid2(asteroidX, asteroidY) {
 
 function asteroid3(asteroidX, asteroidY) {
   fill(66, 65, 64);
-  stroke(82, 81, 80);
+  stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 90);
 
@@ -293,7 +295,7 @@ function asteroid3(asteroidX, asteroidY) {
 
 function asteroid4(asteroidX, asteriodY) {
   fill(66, 65, 64);
-  stroke(82, 81, 80);
+  stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 50);
 
@@ -322,9 +324,9 @@ function asteroid4(asteroidX, asteriodY) {
   pop();
 }
 
-function asteroid5(asteriodX, asteroidY) {
+function asteroid5(asteroidX, asteroidY) {
   fill(66, 65, 64);
-  stroke(82, 81, 80);
+  stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 90);
 
@@ -374,8 +376,9 @@ function startScreen() {
   asteroid2(asteroidX + 250, asteroidY + 150);
   asteroid3(asteroidX - 100, asteroidY + 70);
   asteroid4(asteroidX + 220, asteroidY - 30);
-  asteroid5(asteroidX - 150, asteroidY + 250);
-  character(x - 50, y + 50, 0.7);
+  asteroid5(asteroidX - 50, asteroidY + 250);
+  asteroid5(asteroidX + 150, asteroidY + 450);
+  character(x - 180, y + 150, 0.7);
   //Help from second year NMD student Erik Sandqvist
   y = y + speed;
   if (y > 370 || y < 200) {
@@ -443,16 +446,26 @@ function gameScreen() {
   character(x, y, 0.5);
   y = y + speed;
 
-  if (y > 1100) {
+  if (y > 1200) {
     speed = -2;
-  } else if (y === 1100) {
+  } else if (y === 1200) {
     speed = 0;
   }
 }
 
 function draw() {
-  //startScreen();
-  gameScreen();
+  if (state === "Start") {
+    startScreen();
+  } else if (state === "Play Game") {
+    gameScreen();
+  }
+}
+function mouseClicked() {
+  if (state === "Start") {
+    state = "Play Game";
+  } else if (state === "Play game") {
+    state = "Start";
+  }
 }
 
 /*
