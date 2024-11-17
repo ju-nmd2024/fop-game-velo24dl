@@ -1,9 +1,10 @@
+//All Variables defined
 let x = 420;
 let y = 370;
 let speed = 4;
 
-let asteroidX = 270;
-let asteroidY = 370;
+let asteroidX = 370;
+let asteroidY = 270;
 
 let groundX = 100;
 let groundY = 100;
@@ -16,25 +17,7 @@ function setup() {
   background(54, 52, 52, 150);
 }
 
-function startScreen() {
-  clear();
-  gameScreenBackground();
-  asteroid1(asteroidX, asteroidY - 150);
-  asteroid2(asteroidX + 250, asteroidY + 150);
-  asteroid3(asteroidX - 100, asteroidY + 70);
-  asteroid4(asteroidX + 220, asteroidY - 30);
-  asteroid5(asteroidX - 50, asteroidY + 250);
-  asteroid5(asteroidX + 150, asteroidY + 450);
-  character(x - 180, y + 150, 0.7);
-  //Help from second year NMD student Erik Sandqvist
-  y = y + speed;
-  if (y > 370 || y < 200) {
-    speed = speed * -1;
-  }
-  playButton(345, 50);
-  gameText(287, 110);
-}
-
+// Functions for the objects in the game
 function character(x, y, s) {
   scale(s);
 
@@ -219,210 +202,84 @@ function character(x, y, s) {
   pop();
 }
 
-function asteroid1(asteroidX, asteroidY) {
+function asteroid(asteroidX, asteroidY, asteroidScale) {
+  push();
+
+  //Big circle and Scaling defined
+  scale(asteroidScale);
   fill(66, 65, 64);
   stroke(147, 9, 253);
   strokeWeight(3);
   ellipse(asteroidX - 100, asteroidY - 200, 90);
 
+  //Crater
   push();
   translate(asteroidX - 140, asteroidY - 202);
   rotate(1.65);
   ellipse(0, 0, 35, 20);
   pop();
 
+  //Crater
   push();
   translate(asteroidX - 70, asteroidY - 225);
   rotate(0.9);
   ellipse(0, 0, 35, 20);
   pop();
 
+  //Crater
   push();
   translate(asteroidX - 100, asteroidY - 175);
   rotate(0.5);
   ellipse(0, 0, 25, 20);
   pop();
 
+  //Crater
   push();
   translate(asteroidX - 110, asteroidY - 235);
   rotate(2.9);
   ellipse(0, 0, 25, 10);
   pop();
-}
-
-function asteroid2(asteroidX, asteroidY) {
-  fill(66, 65, 64);
-  stroke(147, 9, 253);
-  strokeWeight(3);
-  ellipse(asteroidX - 100, asteroidY - 200, 90);
-
-  push();
-  translate(asteroidX - 140, asteroidY - 202);
-  rotate(1.65);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 70, asteroidY - 225);
-  rotate(0.9);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 100, asteroidY - 175);
-  rotate(0.5);
-  ellipse(0, 0, 25, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 110, asteroidY - 235);
-  rotate(2.9);
-  ellipse(0, 0, 25, 10);
   pop();
 }
 
-function asteroid3(asteroidX, asteroidY) {
-  fill(66, 65, 64);
-  stroke(147, 9, 253);
-  strokeWeight(3);
-  ellipse(asteroidX - 100, asteroidY - 200, 90);
-
-  push();
-  translate(asteroidX - 140, asteroidY - 202);
-  rotate(1.65);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 70, asteroidY - 225);
-  rotate(0.9);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 100, asteroidY - 175);
-  rotate(0.5);
-  ellipse(0, 0, 25, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 110, asteroidY - 235);
-  rotate(2.9);
-  ellipse(0, 0, 25, 10);
-  pop();
-}
-
-function asteroid4(asteroidX, asteriodY) {
-  fill(66, 65, 64);
-  stroke(147, 9, 253);
-  strokeWeight(3);
-  ellipse(asteroidX - 100, asteroidY - 200, 50);
-
-  push();
-  translate(asteroidX - 115, asteroidY - 202);
-  rotate(1.65);
-  ellipse(0, 0, 15, 10);
-  pop();
-
-  push();
-  translate(asteroidX - 80, asteroidY - 215);
-  rotate(0.7);
-  ellipse(0, 0, 15, 10);
-  pop();
-
-  push();
-  translate(asteroidX - 100, asteroidY - 185);
-  rotate(0.1);
-  ellipse(0, 0, 15, 10);
-  pop();
-
-  push();
-  translate(asteroidX - 105, asteroidY - 225);
-  rotate(2.9);
-  ellipse(0, 0, 15, 5);
-  pop();
-}
-
-function asteroid5(asteroidX, asteroidY) {
-  fill(66, 65, 64);
-  stroke(147, 9, 253);
-  strokeWeight(3);
-  ellipse(asteroidX - 100, asteroidY - 200, 90);
-
-  push();
-  translate(asteroidX - 140, asteroidY - 202);
-  rotate(1.65);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 70, asteroidY - 225);
-  rotate(0.9);
-  ellipse(0, 0, 35, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 100, asteroidY - 175);
-  rotate(0.5);
-  ellipse(0, 0, 25, 20);
-  pop();
-
-  push();
-  translate(asteroidX - 110, asteroidY - 235);
-  rotate(2.9);
-  ellipse(0, 0, 25, 10);
-  pop();
+function asteroids(asteroidX, asteroidY) {
+  // Asteroid constellation
+  asteroid(270, 220);
+  asteroid(720, 710, 0.7);
+  asteroid(170, 440, 0.7);
+  asteroid(590, 340);
+  asteroid(220, 620);
+  asteroid(520, 850);
 }
 
 function playButton(x, y) {
+  //main text
   fill(200, 200, 255);
   rect(x - 120, y, 350, 180);
   textSize(43);
   noStroke();
   fill(0);
   text("Play Game", x - 47, y + 75);
-}
 
-function gameText(x, y) {
+  //Text explaining game
   textSize(25);
   fill(0);
-  text("Help the Alien to land safley", x - 47, y + 75);
+  text("Help the Alien to land safley", x - 97, y + 125);
 }
 
-function gameScreen() {
-  asteroid1(asteroidX + 100, asteroidY - 150);
-  asteroid2(asteroidX + 300, asteroidY + 150);
-  asteroid3(asteroidX - 50, asteroidY + 70);
-  asteroid4(asteroidX + 320, asteroidY - 30);
-  asteroid4(asteroidX + 120, asteroidY - 30);
-  asteroid5(asteroidX - 150, asteroidY + 250);
-  gameScreenBackground();
-  landingGround();
-  character(x, y, 0.5);
-  //this part done with help during lab
-  y = y + speed;
-  speed = speed + acceleration;
-
-  if (keyIsDown(32)) {
-    acceleration = -0.7;
-  } else {
-    acceleration = 0.5;
-  }
-  if (speed > 4 && y >= 1150) {
-    state = "gameOver";
-  }
-  if (speed < 5 && y >= 1150) {
-    state = "youWin";
-  }
+function gameScreenBackground() {
+  background(54, 52, 52, 150);
 }
 
 function landingGround(groundX, groundY) {
+  //Ground
   push();
   fill(41, 40, 40);
   noStroke();
   rect(0, 650, 600, 150);
   pop();
 
+  //Helipad
   push();
   noStroke();
   fill(255, 255, 255);
@@ -441,6 +298,7 @@ function landingGround(groundX, groundY) {
   ellipse(300, 710, 300, 73);
   pop();
 
+  //"H" on Helipad
   push();
   noStroke();
   fill(42, 46, 80);
@@ -448,19 +306,43 @@ function landingGround(groundX, groundY) {
   rect(350, 680, 10, 60);
   rect(260, 710, 90, 10);
   pop();
-
-  /*push();
-  textSize(105);
-  fill(42, 46, 80);
-  translate(x, y+288);
-  rotate(1.6);
-  text("U", 0, 0);
-  pop();
-  */
 }
 
-function gameScreenBackground() {
-  background(54, 52, 52, 150);
+// Functions for different screens of the game
+function startScreen() {
+  clear();
+  gameScreenBackground();
+  asteroids();
+  character(x - 180, y + 150, 0.7);
+
+  //Help from second year NMD student Erik Sandquist
+  y = y + speed;
+  if (y > 370 || y < 200) {
+    speed = speed * -1;
+  }
+  playButton(345, 50);
+}
+
+function gameScreen() {
+  gameScreenBackground();
+  asteroids();
+  landingGround();
+  character(x, y, 0.5);
+  //this part done with help during lab
+  y = y + speed;
+  speed = speed + acceleration;
+
+  if (keyIsDown(32)) {
+    acceleration = -0.7;
+  } else {
+    acceleration = 0.5;
+  }
+  if (speed > 4 && y >= 1150) {
+    state = "gameOver";
+  }
+  if (speed < 5 && y >= 1150) {
+    state = "youWin";
+  }
 }
 
 function gameOverScreen() {
@@ -490,6 +372,7 @@ function youWinScreen() {
   text("Click to go to home page", groundX + 100, groundY + 320);
 }
 
+//Main fgane functions
 function draw() {
   clear();
   if (state === "start") {
@@ -514,10 +397,12 @@ function mouseClicked() {
       y = 370;
       speed = 3;
       acceleration = 0.5;
-    } else if (state === "youWin") {
-      if (mouseX > 160 && mouseX < 410 && mouseY > 300 && mouseY < 450) {
-        state = "start";
-      }
+    }
+  } else if (state === "youWin") {
+    if (mouseX > 160 && mouseX < 410 && mouseY > 300 && mouseY < 450) {
+      state = "start";
+      y = 370;
+      speed = 3;
     }
   }
 }
