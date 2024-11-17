@@ -202,6 +202,7 @@ function character(x, y, s) {
   pop();
 }
 
+// Start Help from Second Year NMD student
 function asteroid(asteroidX, asteroidY, asteroidScale) {
   push();
 
@@ -240,10 +241,25 @@ function asteroid(asteroidX, asteroidY, asteroidScale) {
   ellipse(0, 0, 25, 10);
   pop();
   pop();
+  //End Help
 }
 
+function instructions() {
+  // Button
+  fill(31, 31, 31);
+  stroke(129, 129, 129);
+  strokeWeight(6);
+  rect(50, 1100, 300, 70, 5);
+
+  // Text
+  fill(210, 213, 211);
+  noStroke();
+  textSize(25);
+  text("Play using the Space Bar", 60, 1145);
+}
 function asteroids(asteroidX, asteroidY) {
   // Asteroid constellation
+  //Idea from/Help with structure of asteroids from second year NMD Student
   asteroid(270, 220);
   asteroid(720, 710, 0.7);
   asteroid(170, 440, 0.7);
@@ -315,11 +331,12 @@ function startScreen() {
   asteroids();
   character(x - 180, y + 150, 0.7);
 
-  //Help from second year NMD student Erik Sandquist
+  //Start Help from second year NMD student Erik Sandquist (
   y = y + speed;
   if (y > 370 || y < 200) {
     speed = speed * -1;
   }
+  //End Help
   playButton(345, 50);
 }
 
@@ -328,7 +345,8 @@ function gameScreen() {
   asteroids();
   landingGround();
   character(x, y, 0.5);
-  //this part done with help during lab
+  instructions();
+  //start Help - during lab from master students
   y = y + speed;
   speed = speed + acceleration;
 
@@ -343,7 +361,7 @@ function gameScreen() {
   if (speed < 5 && y >= 1150) {
     state = "youWin";
   }
-}
+} //End Help
 
 function gameOverScreen() {
   background(179, 36, 40);
@@ -372,7 +390,7 @@ function youWinScreen() {
   text("Click to go to home page", groundX + 100, groundY + 320);
 }
 
-//Main fgane functions
+//Main game functions
 function draw() {
   clear();
   if (state === "start") {
