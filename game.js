@@ -14,7 +14,7 @@ let acceleration = 0.5;
 
 function setup() {
   createCanvas(600, 800);
-  background(54, 52, 52, 150);
+  background(57, 63, 67, 150);
 }
 
 // Functions for the objects in the game
@@ -284,10 +284,11 @@ function playButton(x, y) {
 }
 
 function gameScreenBackground() {
-  background(54, 52, 52, 150);
+  background(57, 63, 67, 150);
+  asteroids();
 }
 
-function landingGround(groundX, groundY) {
+function landingGround() {
   //Ground
   push();
   fill(41, 40, 40);
@@ -328,7 +329,6 @@ function landingGround(groundX, groundY) {
 function startScreen() {
   clear();
   gameScreenBackground();
-  asteroids();
   character(x - 180, y + 150, 0.7);
 
   //Start Help from second year NMD student Erik Sandquist (
@@ -342,7 +342,6 @@ function startScreen() {
 
 function gameScreen() {
   gameScreenBackground();
-  asteroids();
   landingGround();
   character(x, y, 0.5);
   instructions();
@@ -377,17 +376,20 @@ function gameOverScreen() {
 }
 
 function youWinScreen() {
+  //Button
   background(147, 9, 253);
   strokeWeight(5);
   stroke(66, 65, 64);
   fill(179, 36, 40);
   rect(groundX + 60, groundY + 200, 250, 150);
+
+  //Text
   fill(255, 255, 255);
   textSize(25);
   noStroke();
   text("You Win", groundX + 135, groundY + 260);
   textSize(17);
-  text("Click to go to home page", groundX + 100, groundY + 320);
+  text("Click to return to home page", groundX + 80, groundY + 310);
 }
 
 //Main game functions
