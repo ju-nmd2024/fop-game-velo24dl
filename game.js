@@ -1,7 +1,7 @@
 //All Variables defined
 let x = 420;
 let y = 370;
-let speed = 4;
+let speed = 3;
 
 let asteroidX = 370;
 let asteroidY = 270;
@@ -355,10 +355,10 @@ function gameScreen() {
   } else {
     acceleration = 0.5;
   }
-  if (speed > 4 && y >= 1150) {
+  if (speed > 3 && y >= 1150) {
     state = "gameOver";
   }
-  if (speed < 5 && y >= 1150) {
+  if (speed < 4 && y >= 1150) {
     state = "youWin";
   }
 } //End Help
