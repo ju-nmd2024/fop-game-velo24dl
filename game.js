@@ -14,7 +14,7 @@ let acceleration = 0.5;
 
 function setup() {
   createCanvas(600, 800);
-  background(57, 63, 67, 150);
+  background(57, 63, 67);
 }
 
 // Functions for the objects in the game
@@ -264,8 +264,8 @@ function asteroids(asteroidX, asteroidY) {
   asteroid(720, 710, 0.7);
   asteroid(170, 440, 0.7);
   asteroid(590, 340);
-  asteroid(220, 620);
-  asteroid(520, 850);
+  asteroid(280, 620);
+  asteroid(420, 850);
 }
 
 function playButton(x, y) {
@@ -284,7 +284,7 @@ function playButton(x, y) {
 }
 
 function gameScreenBackground() {
-  background(57, 63, 67, 150);
+  background(57, 63, 67);
   asteroids();
 }
 
