@@ -351,7 +351,7 @@ function gameScreen() {
   velocity = velocity + acceleration;
 
   if (keyIsDown(32)) {
-    acceleration = -0.7;
+    acceleration = -0.5;
   } else {
     acceleration = 0.5;
   }
