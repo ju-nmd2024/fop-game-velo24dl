@@ -1,7 +1,7 @@
 //All Variables defined
 let x = 420;
 let y = 370;
-let speed = 3;
+let velocity = 3;
 
 let asteroidX = 370;
 let asteroidY = 270;
@@ -332,9 +332,9 @@ function startScreen() {
   character(x - 180, y + 150, 0.7);
 
   //Start Help from second year NMD student Erik Sandquist (
-  y = y + speed;
+  y = y + velocity;
   if (y > 370 || y < 200) {
-    speed = speed * -1;
+    velocity = velocity * -1;
   }
   //End Help
   playButton(345, 50);
@@ -345,19 +345,20 @@ function gameScreen() {
   landingGround();
   character(x, y, 0.5);
   instructions();
+
   //start Help - during lab from master students
-  y = y + speed;
-  speed = speed + acceleration;
+  y = y + velocity;
+  velocity = velocity + acceleration;
 
   if (keyIsDown(32)) {
     acceleration = -0.7;
   } else {
     acceleration = 0.5;
   }
-  if (speed > 3 && y >= 1150) {
+  if (velocity > 4 && y >= 1150) {
     state = "gameOver";
   }
-  if (speed < 4 && y >= 1150) {
+  if (velocity < 4 && y >= 1150) {
     state = "youWin";
   }
 } //End Help
@@ -415,14 +416,14 @@ function mouseClicked() {
     if (mouseX > 160 && mouseX < 410 && mouseY > 301 && mouseY < 450) {
       state = "playGame";
       y = 370;
-      speed = 3;
+      velocity = 3;
       acceleration = 0.5;
     }
   } else if (state === "youWin") {
     if (mouseX > 160 && mouseX < 410 && mouseY > 300 && mouseY < 450) {
       state = "start";
       y = 370;
-      speed = 3;
+      velocity = 3;
     }
   }
 }
